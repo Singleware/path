@@ -1,0 +1,41 @@
+{
+  "author": {
+    "name": "Silas B. Domingos",
+    "email": "hello@balmante.eti.br",
+    "url": "https://balmante.eti.br"
+  },
+  "name": "@singleware/path",
+  "description": "Singleware path helper package.",
+  "license": "MIT",
+  "version": "1.0.0",
+  "main": "release/source/index.js",
+  "types": "release/types/index.d.ts",
+  "keywords": [
+    "directory",
+    "path",
+    "helper"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/singleware/path"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "dependencies": {
+    "@singleware/class": "^1.1.11"
+  },
+  "devDependencies": {
+    "prettier": "^1.14.2",
+    "typescript": "^2.9.2"
+  },
+  "prettier": {
+    "printWidth": 140,
+    "tabWidth": 2,
+    "singleQuote": true,
+    "semi": true
+  },
+  "scripts": {
+    "build": "tsc"
+  }
+}
