@@ -58,7 +58,7 @@ let Helper = class Helper {
     }
     /**
      * Gets the directory path of the specified path.
-     * @param path Path of extraction.
+     * @param path Path for extraction.
      * @returns Returns the directory path.
      */
     static dirname(path) {
@@ -67,12 +67,21 @@ let Helper = class Helper {
     }
     /**
      * Gets the directory name of the specified path.
-     * @param path Path of extraction.
-     * @returns Returns the directory path.
+     * @param path Path for extraction.
+     * @returns Returns the directory name.
      */
     static basename(path) {
         const normalized = this.normalize(path);
         return normalized.substr(normalized.lastIndexOf(this.separator) + 1);
+    }
+    /**
+     * Gets the extension name of the specified path.
+     * @param path Path for extraction.
+     * @returns Returns the extension name.
+     */
+    static extname(path) {
+        const base = this.basename(path);
+        return base[0] === '.' ? '' : base.substr(base.lastIndexOf('.') + 1);
     }
 };
 /**
@@ -97,6 +106,9 @@ __decorate([
 __decorate([
     Class.Public()
 ], Helper, "basename", null);
+__decorate([
+    Class.Public()
+], Helper, "extname", null);
 Helper = __decorate([
     Class.Describe()
 ], Helper);

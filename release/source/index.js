@@ -11,3 +11,4 @@ exports.join = helper_1.Helper.join;
 exports.resolve = helper_1.Helper.resolve;
 exports.dirname = helper_1.Helper.dirname;
 exports.basename = helper_1.Helper.basename;
+exports.extname = helper_1.Helper.extname;

@@ -26,14 +26,20 @@ export declare class Helper {
     static resolve(...paths: string[]): string;
     /**
      * Gets the directory path of the specified path.
-     * @param path Path of extraction.
+     * @param path Path for extraction.
      * @returns Returns the directory path.
      */
     static dirname(path: string): string;
     /**
      * Gets the directory name of the specified path.
-     * @param path Path of extraction.
-     * @returns Returns the directory path.
+     * @param path Path for extraction.
+     * @returns Returns the directory name.
      */
     static basename(path: string): string;
+    /**
+     * Gets the extension name of the specified path.
+     * @param path Path for extraction.
+     * @returns Returns the extension name.
+     */
+    static extname(path: string): string;
 }

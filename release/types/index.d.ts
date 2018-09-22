@@ -8,3 +8,4 @@ export declare const join: typeof Helper.join;
 export declare const resolve: typeof Helper.resolve;
 export declare const dirname: typeof Helper.dirname;
 export declare const basename: typeof Helper.basename;
+export declare const extname: typeof Helper.extname;

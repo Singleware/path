@@ -13,7 +13,7 @@ export class Helper {
    * Path separator.
    */
   @Class.Public()
-  public static separator: string = '/';
+  public static separator = '/';
 
   /**
    * Normalizes the specified path.
@@ -63,7 +63,7 @@ export class Helper {
 
   /**
    * Gets the directory path of the specified path.
-   * @param path Path of extraction.
+   * @param path Path for extraction.
    * @returns Returns the directory path.
    */
   @Class.Public()
@@ -74,12 +74,23 @@ export class Helper {
 
   /**
    * Gets the directory name of the specified path.
-   * @param path Path of extraction.
-   * @returns Returns the directory path.
+   * @param path Path for extraction.
+   * @returns Returns the directory name.
    */
   @Class.Public()
   public static basename(path: string) {
     const normalized = this.normalize(path);
     return normalized.substr(normalized.lastIndexOf(this.separator) + 1);
+  }
+
+  /**
+   * Gets the extension name of the specified path.
+   * @param path Path for extraction.
+   * @returns Returns the extension name.
+   */
+  @Class.Public()
+  public static extname(path: string) {
+    const base = this.basename(path);
+    return base[0] === '.' ? '' : base.substr(base.lastIndexOf('.') + 1);
   }
 }

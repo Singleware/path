@@ -10,3 +10,4 @@ export const join = Helper.join;
 export const resolve = Helper.resolve;
 export const dirname = Helper.dirname;
 export const basename = Helper.basename;
+export const extname = Helper.extname;

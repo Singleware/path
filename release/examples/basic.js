@@ -10,6 +10,8 @@ const Path = require("../source");
 const pathA = 'singleware//tests/../tests';
 const pathB = '/home/singleware/tests';
 const pathC = '/home/singleware';
+const pathD = '/home/singleware/file.bin';
+const pathE = '/home/singleware/.bin';
 // Normalizes the specified path.
 console.log(Path.normalize(pathA));
 // Join the specified path.
@@ -20,3 +22,5 @@ console.log(Path.resolve(pathB, pathC));
 console.log(Path.dirname(pathB));
 // Extract the directory name.
 console.log(Path.basename(pathA));
+// Extract the extension name.
+console.log(`${Path.extname(pathC)}, ${Path.extname(pathD)}, ${Path.extname(pathE)}`);
