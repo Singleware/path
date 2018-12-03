@@ -14,7 +14,7 @@ const Class = require("@singleware/class");
 /**
  * Path helper class.
  */
-let Helper = class Helper {
+let Helper = class Helper extends Class.Null {
     /**
      * Normalizes the specified path.
      * @param path Path to be normalized.

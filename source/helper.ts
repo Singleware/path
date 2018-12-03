@@ -8,7 +8,7 @@ import * as Class from '@singleware/class';
  * Path helper class.
  */
 @Class.Describe()
-export class Helper {
+export class Helper extends Class.Null {
   /**
    * Path separator.
    */
@@ -67,7 +67,7 @@ export class Helper {
    * @returns Returns the directory path.
    */
   @Class.Public()
-  public static dirname(path: string) {
+  public static dirname(path: string): string {
     const normalized = this.normalize(path);
     return normalized.substr(0, normalized.lastIndexOf(this.separator));
   }
@@ -78,7 +78,7 @@ export class Helper {
    * @returns Returns the directory name.
    */
   @Class.Public()
-  public static basename(path: string) {
+  public static basename(path: string): string {
     const normalized = this.normalize(path);
     return normalized.substr(normalized.lastIndexOf(this.separator) + 1);
   }
@@ -89,7 +89,7 @@ export class Helper {
    * @returns Returns the extension name.
    */
   @Class.Public()
-  public static extname(path: string) {
+  public static extname(path: string): string {
     const base = this.basename(path);
     return base[0] === '.' ? '' : base.substr(base.lastIndexOf('.') + 1);
   }

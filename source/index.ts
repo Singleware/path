@@ -4,10 +4,44 @@
  */
 import { Helper } from './helper';
 
-// Aliases
-export const normalize = Helper.normalize;
-export const join = Helper.join;
-export const resolve = Helper.resolve;
-export const dirname = Helper.dirname;
-export const basename = Helper.basename;
-export const extname = Helper.extname;
+/**
+ * Normalizes the specified path.
+ * @param path Path to be normalized.
+ * @return Returns the normalized path.
+ */
+export const normalize = (path: string): string => Helper.normalize(path);
+
+/**
+ * Join the specified path list.
+ * @param paths Path list.
+ * @returns Returns the joined path.
+ */
+export const join = (...paths: string[]): string => Helper.join(...paths);
+
+/**
+ * Resolves the last absolute path.
+ * @param paths Path list.
+ * @returns Returns the resolved path.
+ */
+export const resolve = (...paths: string[]): string => Helper.resolve(...paths);
+
+/**
+ * Gets the directory path of the specified path.
+ * @param path Path for extraction.
+ * @returns Returns the directory path.
+ */
+export const dirname = (path: string): string => Helper.dirname(path);
+
+/**
+ * Gets the directory name of the specified path.
+ * @param path Path for extraction.
+ * @returns Returns the directory name.
+ */
+export const basename = (path: string): string => Helper.basename(path);
+
+/**
+ * Gets the extension name of the specified path.
+ * @param path Path for extraction.
+ * @returns Returns the extension name.
+ */
+export const extname = (path: string): string => Helper.extname(path);

@@ -1,7 +1,12 @@
 /**
+ * Copyright (C) 2018 Silas B. Domingos
+ * This source code is licensed under the MIT License as described in the file LICENSE.
+ */
+import * as Class from '@singleware/class';
+/**
  * Path helper class.
  */
-export declare class Helper {
+export declare class Helper extends Class.Null {
     /**
      * Path separator.
      */
