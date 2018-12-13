@@ -44,7 +44,7 @@ export class Helper extends Class.Null {
    */
   @Class.Public()
   public static join(...paths: string[]): string {
-    return this.normalize(paths.join(this.separator));
+    return this.normalize(paths.filter((value: string) => value.length).join(this.separator));
   }
 
   /**

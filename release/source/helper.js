@@ -42,7 +42,7 @@ let Helper = class Helper extends Class.Null {
      * @returns Returns the joined path.
      */
     static join(...paths) {
-        return this.normalize(paths.join(this.separator));
+        return this.normalize(paths.filter((value) => value.length).join(this.separator));
     }
     /**
      * Resolves the last absolute path.
