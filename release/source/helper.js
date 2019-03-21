@@ -6,8 +6,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * Copyright (C) 2018 Silas B. Domingos
+/*
+ * Copyright (C) 2018-2019 Silas B. Domingos
  * This source code is licensed under the MIT License as described in the file LICENSE.
  */
 const Class = require("@singleware/class");
@@ -21,20 +21,39 @@ let Helper = class Helper extends Class.Null {
      * @return Returns the normalized path.
      */
     static normalize(path) {
-        const pieces = path.split(this.separator);
-        const newer = [];
-        for (let i = 0; i < pieces.length; ++i) {
-            const directory = pieces[i];
-            if (i === 0 || i + 1 === pieces.length || (directory.length && directory !== '.')) {
-                if (directory === '..') {
-                    newer.pop();
+        if (path.length > 0) {
+            const pieces = path.split(this.separator);
+            const length = pieces.length;
+            const newer = [];
+            let last;
+            for (let offset = 0; offset < length; ++offset) {
+                const part = pieces[offset];
+                if (newer.length === 0) {
+                    newer.push((last = part));
                 }
-                else {
-                    newer.push(directory);
+                else if (part !== '.') {
+                    if (part === '..' && part !== last) {
+                        if (last !== '') {
+                            newer.pop();
+                            last = newer[newer.length - 1];
+                        }
+                    }
+                    else if (part.length > 0) {
+                        if (last === '.') {
+                            newer[newer.length - 1] = last = part;
+                        }
+                        else {
+                            newer.push((last = part));
+                        }
+                    }
+                    else if (offset + 1 === length) {
+                        newer.push((last = part));
+                    }
                 }
             }
+            return newer.join(this.separator);
         }
-        return newer.join(this.separator);
+        return '.';
     }
     /**
      * Join the specified path list.
@@ -52,7 +71,7 @@ let Helper = class Helper extends Class.Null {
     static resolve(...paths) {
         let resolved = '';
         for (const path of paths) {
-            resolved = path[0] === this.separator ? path : this.join(resolved, path);
+            resolved = path[0] === this.separator ? this.normalize(path) : this.join(resolved, path);
         }
         return resolved;
     }

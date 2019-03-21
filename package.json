@@ -7,7 +7,7 @@
   "name": "@singleware/path",
   "description": "Singleware path helper package.",
   "license": "MIT",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "main": "release/source/index.js",
   "types": "release/types/index.d.ts",
   "keywords": [
@@ -22,19 +22,27 @@
     "node": ">=10"
   },
   "dependencies": {
-    "@singleware/class": "^1.1.14"
+    "@singleware/class": "^1.1.19"
   },
   "devDependencies": {
-    "prettier": "^1.15.3",
+    "@singleware/testing": "^1.0.0",
+    "@types/node": "^11.11.5",
+    "prettier": "^1.16.4",
     "typescript": "^2.9.2"
   },
   "prettier": {
-    "printWidth": 140,
+    "printWidth": 180,
     "tabWidth": 2,
     "singleQuote": true,
     "semi": true
   },
   "scripts": {
-    "build": "tsc"
+    "prepublishOnly": "npm test",
+    "test": "node ./release/tests/suite.js",
+    "start": "node ./release/examples/basic.js",
+    "build": "npm run make-source && npm run make-examples && npm run make-tests",
+    "make-source": "npx tsc -p ./source",
+    "make-examples": "npx tsc -p ./examples",
+    "make-tests": "npx tsc -p ./tests"
   }
 }

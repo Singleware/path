@@ -1,5 +1,5 @@
-/**
- * Copyright (C) 2018 Silas B. Domingos
+/*
+ * Copyright (C) 2018-2019 Silas B. Domingos
  * This source code is licensed under the MIT License as described in the file LICENSE.
  */
 import * as Class from '@singleware/class';
@@ -22,19 +22,35 @@ export class Helper extends Class.Null {
    */
   @Class.Public()
   public static normalize(path: string): string {
-    const pieces = path.split(this.separator);
-    const newer = [];
-    for (let i = 0; i < pieces.length; ++i) {
-      const directory = pieces[i];
-      if (i === 0 || i + 1 === pieces.length || (directory.length && directory !== '.')) {
-        if (directory === '..') {
-          newer.pop();
-        } else {
-          newer.push(directory);
+    if (path.length > 0) {
+      const pieces = path.split(this.separator);
+      const length = pieces.length;
+      const newer = <string[]>[];
+      let last;
+      for (let offset = 0; offset < length; ++offset) {
+        const part = pieces[offset];
+        if (newer.length === 0) {
+          newer.push((last = part));
+        } else if (part !== '.') {
+          if (part === '..' && part !== last) {
+            if (last !== '') {
+              newer.pop();
+              last = newer[newer.length - 1];
+            }
+          } else if (part.length > 0) {
+            if (last === '.') {
+              newer[newer.length - 1] = last = part;
+            } else {
+              newer.push((last = part));
+            }
+          } else if (offset + 1 === length) {
+            newer.push((last = part));
+          }
         }
       }
+      return newer.join(this.separator);
     }
-    return newer.join(this.separator);
+    return '.';
   }
 
   /**
@@ -56,7 +72,7 @@ export class Helper extends Class.Null {
   public static resolve(...paths: string[]): string {
     let resolved = '';
     for (const path of paths) {
-      resolved = path[0] === this.separator ? path : this.join(resolved, path);
+      resolved = path[0] === this.separator ? this.normalize(path) : this.join(resolved, path);
     }
     return resolved;
   }

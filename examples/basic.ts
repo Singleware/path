@@ -1,8 +1,6 @@
-/**
- * Copyright (C) 2018 Silas B. Domingos
+/*
+ * Copyright (C) 2018-2019 Silas B. Domingos
  * This source code is licensed under the MIT License as described in the file LICENSE.
- *
- * The proposal of this example is to show how to use the path helper package.
  */
 import * as Path from '../source';
 
@@ -28,4 +26,4 @@ console.log(Path.dirname(pathB));
 console.log(Path.basename(pathA));
 
 // Extract the extension name.
-console.log(`${Path.extname(pathC)}, ${Path.extname(pathD)}, ${Path.extname(pathE)}`);
+console.log(`'${Path.extname(pathC)}', '${Path.extname(pathD)}', '${Path.extname(pathE)}'`);
